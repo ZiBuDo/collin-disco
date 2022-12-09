@@ -1,0 +1,8 @@
+1) USB should be named MUSIC
+2) Load all music on root of USB device
+
+
+
+
+Troubleshoot:
+Choppy Audio - Turn down audio

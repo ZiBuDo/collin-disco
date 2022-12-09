@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+.infoText {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.infoText > h2 {
+  text-align: center;
+  color: white;
+  font-weight: 100;
+
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.play {
+  display: none;
+}
+
+#fileInput {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  position: absolute;
+  z-index: 5;
+}
+
+#audioPlayer {
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  z-index: 6;
+  transform: translateX(-50%);
+  margin: 20px;
+}
+
+#inputForm {
+  position: absolute;
+  top: -100px;
+}
+#fileInput {
+  position: absolute;
+  top: -100px;
+  height: 0;
+}
+
+.signText {
+  position: fixed;
+  z-index: 1;
+  top: 0%;
+  left: 0%;
+  margin: 10px;
+  color: white;
+  font-weight: 100;
+  font-size: 10px;
+  line-height: 16px;
+}
+.loadSongButton:hover {
+  background-color: rgba(44, 0, 65, 0.5);
+}
+.loadSongButton {
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  border: none;
+  border: solid 1px white;
+  background-color: rgba(174, 0, 255, 0.5);
+  transition: background-color 300ms ease-in-out;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.leftLink {
+  font-size: 14px;
+  color: white;
+}
+@media only screen and (max-width: 400px) {
+  .infoText {
+    font-size: 10px;
+  }
+}
+
+
+/*# sourceMappingURL=main.css.map*/

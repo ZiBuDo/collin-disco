@@ -23,6 +23,7 @@ export class AppController {
             this.count = 0;
         }
         this.count = this.count + 1;
+        console.log("SENDING", join(this.songsDir, this.current), this.count);
         return res.sendFile(join(this.songsDir, this.current));
     }
 
