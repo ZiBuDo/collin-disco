@@ -49,11 +49,12 @@ let AppController = class AppController {
     }
     async getNewSong() {
         let newSong = this.files[Math.floor(Math.random() * this.files.length)];
-        while (newSong === this.current) {
+        while (newSong === this.previous) {
             newSong = this.files[Math.floor(Math.random() * this.files.length)];
         }
         const duration = await (0, get_audio_duration_1.default)((0, path_1.join)(this.songsDir, newSong));
         this.timeleft = duration;
+        this.previous = newSong;
         return newSong;
     }
 };

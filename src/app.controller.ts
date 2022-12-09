@@ -11,6 +11,7 @@ export class AppController {
     private songsDir: string = resolve(process.env.SONGS_DIR);
     private files: string[];
     private current: string;
+    private previous: string;
     private timeleft: number = 0;
 
     constructor() {
@@ -49,11 +50,12 @@ export class AppController {
 
     private async getNewSong(): Promise<string>{
         let newSong = this.files[Math.floor(Math.random() * this.files.length)];
-        while(newSong === this.current){
+        while(newSong === this.previous){
             newSong = this.files[Math.floor(Math.random() * this.files.length)];
         }
         const duration = await getAudioDurationInSeconds(join(this.songsDir, newSong));
         this.timeleft = duration;
+        this.previous = newSong;
         return newSong;
     }
 }
