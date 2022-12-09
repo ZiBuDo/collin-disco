@@ -1,18 +1,16 @@
 const visuals = [
-    "d20/index.html",
-    "stream/index.html",
-    "audible/lines.html",
-    "audible/sphere.html",
-    "audible/spiral.html",
-    "audible/waveform.html",
-    "bars/index.html",
-    "earth/index.html",
-    "fireworks/index.html",
-    "multiple/index.html#/terrain",
-    "multiple/index.html#/angels",
-    "multiple/index.html#/hedgehog",
-    "multiple/index.html#/lotus",
-    "multiple/index.html#/terrain"
+    "d20/index.html", //10
+    "stream/index.html",  // 7
+    "audible/lines.html", // 8
+    "audible/sphere.html", //8
+    "audible/spiral.html", // 8
+    "audible/waveform.html", //7
+    "earth/index.html", //5
+    "fireworks/index.html", //10
+    "multiple/index.html#/terrain",  // 10
+    "multiple/index.html#/angels", // 10
+    "multiple/index.html#/hedgehog", // 10
+    "multiple/index.html#/lotus" // 10
 ]
 
 const baseUrl = "http://localhost:3000/play/visualizations/";

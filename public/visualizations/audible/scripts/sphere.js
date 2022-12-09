@@ -67,12 +67,6 @@ function init() {
                 controls.reset();
                 break;
             case 67:
-                if (gui.closed) {
-                    gui.closed = false;
-                }
-                else {
-                    gui.closed = true;
-                }
                 break;
             case 187:
                 if (sphere.intensity < 12) {
@@ -103,14 +97,6 @@ var GuiControls = function () {
 };
 
 var sphere = new GuiControls();
-
-var gui = new dat.GUI();
-gui.closed = true;
-gui.addColor(sphere, 'innerColor').name('Inner Color');
-gui.addColor(sphere, 'middleColor').name('Middle Color');
-gui.addColor(sphere, 'outerColor').name('Outer Color');
-gui.add(sphere, 'intensity', 4, 12).name('Intensity');
-gui.add(sphere, 'opacity', 0, 1).name('Opacity');
 
 function animate() {
     app.animationFrame = (window.requestAnimationFrame || window.webkitRequestAnimationFrame)(app.animate);

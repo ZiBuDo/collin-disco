@@ -110,12 +110,6 @@ function init() {
                 }
                 break;
             case 67:
-                if (gui.closed){
-                    gui.closed = false;
-                }
-                else {
-                    gui.closed = true;
-                }
                 break;
             case 187:
                 if (waveform.intensity < 4) {
@@ -161,22 +155,6 @@ var GuiControls = function(){
 };
 
 var waveform = new GuiControls();
-
-var gui = new dat.GUI();
-gui.closed = true;
-gui.addColor(waveform, 'color1').name('Color 1');
-gui.addColor(waveform, 'color2').name('Color 2');
-gui.addColor(waveform, 'color3').name('Color 3');
-gui.addColor(waveform, 'color4').name('Color 4');
-gui.addColor(waveform, 'color5').name('Color 5');
-gui.addColor(waveform, 'color6').name('Color 6');
-gui.addColor(waveform, 'color7').name('Color 7');
-gui.addColor(waveform, 'color8').name('Color 8');
-gui.add(waveform, 'intensity', 0.5, 4).step(0.5);
-// gui.add(waveform, 'particleHeight', -500, 500);
-// gui.add(waveform, 'cameraX', -500, 500);
-gui.add(waveform, 'cameraY', -560, 1000);
-gui.add(waveform, 'cameraZ', 0, 1000);
 
 function animate() {
     app.animationFrame = (window.requestAnimationFrame || window.webkitRequestAnimationFrame)(app.animate);

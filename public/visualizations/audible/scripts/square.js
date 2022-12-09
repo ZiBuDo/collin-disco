@@ -82,12 +82,6 @@ function init() {
                 }
                 break;
             case 67:
-                if (gui.closed){
-                    gui.closed = false;
-                }
-                else {
-                    gui.closed = true;
-                }
                 break;
             case 187:
                 if (square.intensity < 15){
@@ -151,17 +145,6 @@ var GuiControls = function(){
 
 var square = new GuiControls();
 
-var gui = new dat.GUI();
-gui.closed = true;
-gui.add(square, 'rotation', -0.005, 0.005).name('Rotation');
-gui.add(square, 'intensity', 5, 15);
-gui.add(square, 'toggleColor').name('Toggle Color');
-
-var folder = gui.addFolder('Colors');
-folder.add(square, 'R', 0, 1).name('R');
-folder.add(square, 'G', 0, 1).name('G');
-folder.add(square, 'B', 0, 1).name('B');
-folder.open();
 
 function animate() {
     app.animationFrame = (window.requestAnimationFrame || window.webkitRequestAnimationFrame)(app.animate);
