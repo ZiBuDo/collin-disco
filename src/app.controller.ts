@@ -21,6 +21,9 @@ export class AppController {
     private tick(){
         setTimeout(() => {
             this.timeleft = this.timeleft - 1;
+            if(this.timeleft <= 0){
+                this.current = null;
+            }
             this.tick();
         }, 1000);
     }
@@ -51,9 +54,6 @@ export class AppController {
         }
         const duration = await getAudioDurationInSeconds(join(this.songsDir, newSong));
         this.timeleft = duration;
-        setTimeout(() => {
-            this.current = null;
-        }, (duration) * 1000);
         return newSong;
     }
 }
