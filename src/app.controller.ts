@@ -13,7 +13,7 @@ export class AppController {
     private count: number = 0;
 
     constructor() {
-        this.files = readdirSync(this.songsDir, { withFileTypes: true }).filter(f => f.isFile()).map(f => f.name);
+        this.files = readdirSync(this.songsDir, { withFileTypes: true }).filter(f => f.isFile()).map(f => f.name).filter(n => n !== "instructions.txt");
     }
 
     @Get("tune.mp3")
