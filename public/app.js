@@ -20,9 +20,10 @@ setTimeout(() => {
     const request = new XMLHttpRequest()
     request.open('GET', urlDuration, true)
     request.onload = function () {
-        const duration = (parseFloat(request.response) + 1) * 1000;
+        const duration = (parseFloat(request.response) + 3) * 1000;
         setTimeout(() => {
-            window.location.reload()
+            window.location.reload();
+            console.log("next");
         }, duration);
         console.log("DURATION", request.response);
     }
