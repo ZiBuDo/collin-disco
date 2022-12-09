@@ -14,24 +14,20 @@ const visuals = [
 ]
 
 const baseUrl = "http://localhost:3000/play/visualizations/";
-const tune = "http://localhost:3000/tune.mp3";
+const urlDuration = "http://localhost:3000/duration";
 
-const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-const request = new XMLHttpRequest()
-request.open('GET', tune, true)
-request.responseType = 'arraybuffer'
-request.onload = function() {
-    audioContext.decodeAudioData(request.response,
-        function(buffer) {
-            let duration = buffer.duration
-            console.log("DURATION", duration)
-            setTimeout(() => {
-                window.location.reload();
-            }, (duration + 2) * 1000)
-        }
-    )
-}
-request.send()
+setTimeout(() => {
+    const request = new XMLHttpRequest()
+    request.open('GET', urlDuration, true)
+    request.onload = function () {
+        const duration = (parseFloat(request.response) + 1) * 1000;
+        setTimeout(() => {
+            window.location.reload()
+        }, duration);
+        console.log("DURATION", request.response);
+    }
+    request.send()
+}, 3000);
 
 
 var rand = visuals[Math.floor(Math.random() * visuals.length)];

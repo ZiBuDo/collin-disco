@@ -15,27 +15,45 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const fs_1 = require("fs");
+const get_audio_duration_1 = require("get-audio-duration");
 const path_1 = require("path");
 let AppController = class AppController {
     constructor() {
         this.songsDir = (0, path_1.resolve)(process.env.SONGS_DIR);
-        this.count = 0;
+        this.timeleft = 0;
         this.files = (0, fs_1.readdirSync)(this.songsDir, { withFileTypes: true }).filter(f => f.isFile()).map(f => f.name).filter(n => n !== "instructions.txt");
+        this.tick();
     }
-    getTune(res) {
-        if (this.count == 0 || this.count == 2) {
-            this.current = this.getNewSong();
-            this.count = 0;
+    tick() {
+        setTimeout(() => {
+            this.timeleft = this.timeleft - 1;
+            this.tick();
+        }, 1000);
+    }
+    async getTune(res) {
+        const song = await this.getSong();
+        console.log("SENDING", (0, path_1.join)(this.songsDir, song));
+        res.sendFile((0, path_1.join)(this.songsDir, song));
+    }
+    getDuration() {
+        return this.timeleft;
+    }
+    async getSong() {
+        if (!this.current) {
+            this.current = await this.getNewSong();
         }
-        this.count = this.count + 1;
-        console.log("SENDING", (0, path_1.join)(this.songsDir, this.current), this.count);
-        return res.sendFile((0, path_1.join)(this.songsDir, this.current));
+        return this.current;
     }
-    getNewSong() {
+    async getNewSong() {
         let newSong = this.files[Math.floor(Math.random() * this.files.length)];
         while (newSong === this.current) {
             newSong = this.files[Math.floor(Math.random() * this.files.length)];
         }
+        const duration = await (0, get_audio_duration_1.default)((0, path_1.join)(this.songsDir, newSong));
+        this.timeleft = duration;
+        setTimeout(() => {
+            this.current = null;
+        }, (duration) * 1000);
         return newSong;
     }
 };
@@ -44,8 +62,14 @@ __decorate([
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AppController.prototype, "getTune", null);
+__decorate([
+    (0, common_1.Get)("duration"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "getDuration", null);
 AppController = __decorate([
     (0, common_1.Controller)(""),
     __metadata("design:paramtypes", [])

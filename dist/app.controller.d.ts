@@ -3,8 +3,11 @@ export declare class AppController {
     private songsDir;
     private files;
     private current;
-    private count;
+    private timeleft;
     constructor();
-    getTune(res: Response): void;
+    private tick;
+    getTune(res: Response): Promise<void>;
+    getDuration(): number;
+    private getSong;
     private getNewSong;
 }
